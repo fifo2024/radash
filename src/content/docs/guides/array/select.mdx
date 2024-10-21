@@ -1,0 +1,37 @@
+---
+title: select
+group: 'Array'
+description: Filter and map an array
+---
+
+## 基础用法
+
+同时且一次性地应用过滤和映射操作。
+
+```ts
+import { select } from 'radash'
+
+const fish = [
+  {
+    name: 'Marlin',
+    weight: 105,
+    source: 'ocean'
+  },
+  {
+    name: 'Bass',
+    weight: 8,
+    source: 'lake'
+  },
+  {
+    name: 'Trout',
+    weight: 13,
+    source: 'lake'
+  }
+]
+
+select(
+  fish,
+  f => f.weight,
+  f => f.source === 'lake'
+) // => [8, 13]
+```

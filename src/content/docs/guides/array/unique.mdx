@@ -1,0 +1,39 @@
+---
+title: unique
+group: 'Array'
+description: Remove duplicates from an array
+---
+
+## 基础用法
+
+给定一个项目数组（以及可选的用于确定它们身份的函数），返回一个没有任何重复项的新数组。
+
+该函数不保留项目的原始顺序。
+
+```ts
+import { unique } from 'radash'
+
+const fish = [
+  {
+    name: 'Marlin',
+    weight: 105,
+    source: 'ocean'
+  },
+  {
+    name: 'Salmon',
+    weight: 22,
+    source: 'river'
+  },
+  {
+    name: 'Salmon',
+    weight: 22,
+    source: 'river'
+  }
+]
+
+unique( fish, f => f.name )
+// [
+//     { name: 'Marlin', weight: 105, source: 'ocean' },
+//     { name: 'Salmon', weight: 22, source: 'river' }
+// ]
+```

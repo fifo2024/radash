@@ -1,0 +1,33 @@
+---
+title: sort
+group: 'Array'
+description: Sort a list of objects by a numerical property
+---
+
+## 基础用法
+
+给定一个对象数组，返回一个新数组，该数组根据在get函数中指定的数字属性进行排序。第三个参数是可选的，允许您按降序而不是默认的升序进行排序。
+
+此函数仅支持数字排序。对于字母排序，请参阅alphabetical函数。
+
+```ts
+import { sort } from 'radash'
+
+const fish = [
+  {
+    name: 'Marlin',
+    weight: 105
+  },
+  {
+    name: 'Bass',
+    weight: 8
+  },
+  {
+    name: 'Trout',
+    weight: 13
+  }
+]
+
+sort(fish, f => f.weight) // => [bass, trout, marlin]
+sort(fish, f => f.weight, true) // => [marlin, trout, bass]
+```

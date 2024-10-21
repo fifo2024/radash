@@ -1,0 +1,23 @@
+---
+title: iterate
+group: 'Array'
+description: Iterate over a callback n times
+---
+
+## 基础用法
+
+有点像 forEach 遇到了 reduce。这对于运行一个函数 n 次以生成一个值很有用。_.iterate 函数接受一个计数（回调要运行的次数）、一个回调函数和一个初始值。回调函数作为归约器运行 count 次，然后返回累积的值。
+
+```ts
+import { iterate } from 'radash'
+
+const value = iterate(
+  4,
+  (acc, idx) => {
+    return acc + idx
+  },
+  0
+) // => 10
+```
+
+请注意，这不是从零开始的索引。如果你传递一个 count 为 5，则在回调函数中将获得索引 1, 2, 3, 4, 5。

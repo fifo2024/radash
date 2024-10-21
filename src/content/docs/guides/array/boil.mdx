@@ -1,0 +1,31 @@
+---
+title: boil
+group: 'Array'
+description: 'Reduce a list of items down to one item'
+---
+
+## 基本用法
+
+给定一个项目数组，返回满足比较条件的最终获胜项目。这对于更复杂的最小值/最大值操作非常有用。
+
+```ts
+import { boil } from 'radash'
+
+const gods = [
+  {
+    name: 'Ra',
+    power: 100
+  },
+  {
+    name: 'Zeus',
+    power: 98
+  },
+  {
+    name: 'Loki',
+    power: 72
+  }
+]
+
+boil(gods, (a, b) => (a.power > b.power ? a : b)) 
+// => { name: 'Ra', power: 100 }
+```

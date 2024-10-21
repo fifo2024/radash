@@ -1,0 +1,18 @@
+---
+title: first
+group: 'Array'
+description: Get the first item from a list
+---
+
+## 基础用法
+
+给定一个项目数组，如果数组中没有项目，则返回第一个项目或默认值。
+
+```ts
+import { first } from 'radash'
+
+const gods = ['ra', 'loki', 'zeus']
+
+first(gods) // => 'ra'
+first([], 'vishnu') // => 'vishnu'
+```

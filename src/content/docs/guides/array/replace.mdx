@@ -1,0 +1,36 @@
+---
+title: replace
+group: 'Array'
+description: Replace an item in an array
+---
+
+## 基础用法
+
+给定一个项目数组，替换与给定条件函数相匹配的第一个项目。只替换第一个匹配项。总是返回原始数组的副本。
+
+```ts
+import { replace } from 'radash'
+
+const fish = [
+  {
+    name: 'Marlin',
+    weight: 105
+  },
+  {
+    name: 'Bass',
+    weight: 8
+  },
+  {
+    name: 'Trout',
+    weight: 13
+  }
+]
+
+const salmon = {
+  name: 'Salmon',
+  weight: 22
+}
+
+// read: replace fish with salmon where the name is Bass
+replace(fish, salmon, f => f.name === 'Bass') // => [marlin, salmon, trout]
+```

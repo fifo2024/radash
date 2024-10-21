@@ -1,0 +1,30 @@
+---
+title: group
+group: 'Array'
+description: 'Sort an array of items into groups'
+---
+
+## 基础用法
+
+给定一个项目数组，group 函数将构建一个对象，其中每个键都是属于该组的项目的数组。通常，这可以用于对项目数组进行分类。
+
+```ts
+import { group } from 'radash'
+
+const fish = [
+  {
+    name: 'Marlin',
+    source: 'ocean'
+  },
+  {
+    name: 'Bass',
+    source: 'lake'
+  },
+  {
+    name: 'Trout',
+    source: 'lake'
+  }
+]
+
+const fishBySource = group(fish, f => f.source) // => { ocean: [marlin], lake: [bass, trout] }
+```

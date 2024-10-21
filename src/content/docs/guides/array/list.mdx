@@ -1,0 +1,65 @@
+---
+title: list
+group: 'Array'
+description: Create a list with specific items
+---
+
+## 基础用法
+
+给定一个起始值、结束值、一个值（这里可能是指初始值或基准值，但根据上下文更可能是起始值被重复使用），以及步长，函数将返回一个从起始值到结束值（包括结束值，如果可能的话）按步长递增的值的列表。
+
+该接口与range相同。
+
+向Python的range功能致敬
+
+```ts
+import { list } from 'radash'
+
+list(3)                  // [0, 1, 2, 3]
+list(0, 3)               // [0, 1, 2, 3]
+list(0, 3, 'y')          // [y, y, y, y]
+list(0, 3, () => 'y')    // [y, y, y, y]
+list(0, 3, i => i)       // [0, 1, 2, 3]
+list(0, 3, i => `y${i}`) // [y0, y1, y2, y3]
+list(0, 3, obj)          // [obj, obj, obj, obj]
+list(0, 6, i => i, 2)    // [0, 2, 4, 6]
+```
+
+## 签名
+
+列表函数可以通过不同的参数做很多事情。
+
+### list(size)
+
+当给定一个参数时，它被视为size。返回一个从0到size的值的列表。
+
+```ts
+list(3) // [0, 1, 2, 3]
+```
+
+### list(start, end)
+
+当给定两个参数时，它们被视为start（开始）和end（结束）。返回一个从start到end的值的列表。
+
+```ts
+list(2, 6) // [2, 3, 4, 5, 6]
+```
+
+### list(start, end, value)
+
+当给定第三个参数时，它被视为列表中要使用的value（值）。如果value是一个函数，那么它会带着一个索引参数被调用，以创建每个值。
+
+```ts
+list(2, 4, {})       // [{}, {}, {}]
+list(2, 4, null)     // [null, null, null]
+list(2, 4, (i) => i) // [2, 3, 4]
+```
+
+### list(start, end, value, step)
+
+当给定第四个参数时，它被视为从start到end生成值时跳过的step（步长）大小。
+
+```ts
+list(2, 4, i => i, 2)      // [2, 4]
+list(25, 100, i => i, 25)  // [25, 50, 75, 100]
+```

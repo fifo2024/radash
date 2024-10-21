@@ -1,0 +1,37 @@
+---
+title: alphabetical
+group: 'Array'
+description: Sorts an array of objects alphabetically by a property
+---
+
+## 基本用法
+
+给定一个对象数组和一个用于确定排序属性的回调函数，返回一个按字母顺序排列对象的新数组。第三个可选参数允许您按降序排序，而不是按默认的升序排序。
+
+对于数字排序，请参阅[sort](./sort) 函数。
+
+```ts
+import { alphabetical } from 'radash'
+
+const gods = [
+  {
+    name: 'Ra',
+    power: 100
+  },
+  {
+    name: 'Zeus',
+    power: 98
+  },
+  {
+    name: 'Loki',
+    power: 72
+  },
+  {
+    name: 'Vishnu',
+    power: 100
+  }
+]
+
+alphabetical(gods, g => g.name) // => [Loki, Ra, Vishnu, Zeus]
+alphabetical(gods, g => g.name, 'desc') // => [Zeus, Vishnu, Ra, Loki]
+```

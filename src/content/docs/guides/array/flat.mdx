@@ -1,0 +1,19 @@
+---
+title: flat
+group: 'Array'
+description: Flatten an array of arrays into a single dimension
+---
+
+## 基础用法
+
+给定一个包含多个数组的数组，返回一个新数组，其中所有子数组中的项都位于顶级。
+
+```ts
+import { flat } from 'radash'
+
+const gods = [['ra', 'loki'], ['zeus']]
+
+flat(gods) // => [ra, loki, zeus]
+```
+
+注意，_.flat 不是递归的，它不会展平子数组的子数组的子数组...的子数组。它只会展平 T[][]（数组的数组）。

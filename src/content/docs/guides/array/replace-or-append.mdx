@@ -1,0 +1,41 @@
+---
+title: replaceOrAppend
+group: 'Array'
+description: Replace item in array or append if no match
+---
+
+## 基础用法
+
+给定一个项目数组、一个项目和一个身份函数，如果数组中已存在该项目，则返回一个新数组，其中该项目在现有项目的索引位置被替换；如果不存在，则将其附加到数组的末尾。
+
+```ts
+import { replaceOrAppend } from 'radash'
+
+const fish = [
+  {
+    name: 'Marlin',
+    weight: 105
+  },
+  {
+    name: 'Salmon',
+    weight: 19
+  },
+  {
+    name: 'Trout',
+    weight: 13
+  }
+]
+
+const salmon = {
+  name: 'Salmon',
+  weight: 22
+}
+
+const sockeye = {
+  name: 'Sockeye',
+  weight: 8
+}
+
+replaceOrAppend(fish, salmon, f => f.name === 'Salmon') // => [marlin, salmon (weight:22), trout]
+replaceOrAppend(fish, sockeye, f => f.name === 'Sockeye') // => [marlin, salmon, trout, sockeye]
+```

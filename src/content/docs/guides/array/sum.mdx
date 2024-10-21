@@ -1,0 +1,30 @@
+---
+title: sum
+group: 'Array'
+description: Add up all items of an array
+---
+
+## 基础用法
+
+给定一个项目数组和一个可选的函数，该函数将每个项目映射到一个数字，然后将所有项目相加。
+
+```ts
+import { sum } from 'radash'
+
+const fish = [
+  {
+    name: 'Marlin',
+    weight: 100
+  },
+  {
+    name: 'Bass',
+    weight: 10
+  },
+  {
+    name: 'Trout',
+    weight: 15
+  }
+]
+
+sum(fish, f => f.weight) // => 125
+```
