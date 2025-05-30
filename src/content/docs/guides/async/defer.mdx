@@ -1,52 +1,35 @@
 ---
 title: defer
-group: 'Async'
-description: Run an async function with deferred functions
+group: "Async"
+description: 通过延迟函数机制执行异步函数
 ---
 
+## 基础用法
 
+\_.defer 函数允许您运行一个异步函数，并在执行过程中注册需要在异步函数完成后延迟执行的函数。这在脚本中非常有用，特别是当特定点之前或之后的失败需要进行某些清理工作时。它的功能有点类似于 finally 代码块。
 
+灵感致谢：该功能的设计灵感来自 Swift 的 defer。
 
-## Basic usage
-
-The `_.defer` functions lets you run an async function, registering functions as you go 
-that should be deferred until the async function completes, and then executed. This is 
-really useful in scripts where failure up to or after a specific point will require some 
-cleanup. It's a bit like a `finally` block. 
-
-A hat tip to Swift's `defer` for the inspiration.  
-
-The function passed to `_.defer` is called with a single `register` function argument that 
-can be used to register the work you want to be called when the function completes. If your function throws an error and then a registered cleanup function throws
-and error it is ignored by default. The register
-function supports an optional second `options` argument that lets you configure a rethrow
-strategy so that error in the cleanup function is rethrown.
+传递给 \_.defer 的函数会接收一个 register 函数参数，用于注册您希望在主函数完成后执行的任务。如果您的函数抛出错误，而随后某个已注册的清理函数也抛出错误，默认情况下该错误会被忽略。register 函数支持可选的第二个 options 参数，允许您配置重新抛出策略，以便将清理函数中的错误重新抛出。
 
 ```ts
-import { defer } from 'radash'
+import { defer } from "radash";
 
 await defer(async (cleanup) => {
-  const buildDir = await createBuildDir()
+    const buildDir = await createBuildDir();
 
-  cleanup(() => fs.unlink(buildDir))
+    cleanup(() => fs.unlink(buildDir));
 
-  await build()
-})
+    await build();
+});
 
 await defer(async (register) => {
-  const org = await api.org.create()
-  register(async () => api.org.delete(org.id), { rethrow: true })
+    const org = await api.org.create();
+    register(async () => api.org.delete(org.id), { rethrow: true });
 
-  const user = await api.user.create()
-  register(async () => api.users.delete(user.id), { rethrow: true })
+    const user = await api.user.create();
+    register(async () => api.users.delete(user.id), { rethrow: true });
 
-  await executeTest(org, user)
-})
+    await executeTest(org, user);
+});
 ```
-
-
-
-
-
-
-

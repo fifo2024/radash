@@ -1,34 +1,33 @@
 ---
 title: retry
-group: 'Async'
-description: Run an async function retrying if it fails
+group: "Async"
+description: 执行异步函数并在失败时自动重试
 ---
 
+## 基础用法
 
+\_.retry 函数允许您运行一个异步函数，并在失败时自动重试。该函数接收以下参数：
 
+异步函数：需要重试执行的目标函数
 
-## Basic usage
+重试次数（可选参数 r）：默认 3 次
 
-The `_.retry` function allows you to run an async function and automagically retry it if it fails. Given the async func to run, an optional max number of retries (`r`), and an optional milliseconds to delay between retries (`d`), the given async function will be called, retrying `r` many times, and waiting `d` milliseconds between retries.  
+重试间隔（可选参数 d）：毫秒数，默认无间隔（null）
 
-The `times` option defaults to `3`. The `delay` option (defaults to null) can specify milliseconds to sleep between attempts.  
+可选配置项：
+times：重试次数（默认 3）
 
-The `backoff` option is like delay but uses a function to sleep -- makes for easy exponential backoff.
+delay：每次重试的固定间隔（毫秒，默认不等待）
+
+backoff：动态退避策略（例如指数退避），通过函数计算每次重试的等待时间
 
 ```ts
-import { retry } from 'radash'
+import { retry } from "radash";
 
-await retry({}, api.users.list)
-await retry({ times: 10 }, api.users.list)
-await retry({ times: 2, delay: 1000 }, api.users.list)
+await retry({}, api.users.list);
+await retry({ times: 10 }, api.users.list);
+await retry({ times: 2, delay: 1000 }, api.users.list);
 
 // exponential backoff
-await retry({ backoff: i => 10**i }, api.users.list)
+await retry({ backoff: (i) => 10 ** i }, api.users.list);
 ```
-
-
-
-
-
-
-

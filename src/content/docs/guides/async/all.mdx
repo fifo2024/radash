@@ -1,16 +1,14 @@
 ---
 title: all
-group: 'Async'
-description: Await many promises
+group: "Async"
+description: 等待多个 Promise 完成
 ---
 
-The `all` function is similar to the builtin Promise.all or Promise.allSettled
-functions. Given a list (or object) of promises, if any errors are thrown, all
-errors are gathered and thrown in an AggregateError.
+all 函数类似于内置的 Promise.all 或 Promise.allSettled 函数。给定一个 Promise 列表（或对象），如果其中任何 Promise 抛出错误，所有错误都会被收集并封装在一个 AggregateError 中抛出。
 
-## Using an Array
+## 使用数组（Array）作为输入
 
-Passing an array as an argument will return the resolved promise values as an array in the same order.
+当传入数组参数时，函数会按原顺序返回一个包含所有 Promise 解析值的数组。
 
 ```ts
 import { all } from 'radash'
@@ -22,9 +20,9 @@ const [user] = await all([
 ])
 ```
 
-## Using an Object
+## 使用对象（Object）作为输入
 
-Passing an object as an argument will return an object with the same keys and the values as the resolved promise values.
+如果传入的参数是对象（而非数组），函数会保持原有键名结构，并将每个键对应的 Promise 替换为它的解析值。
 
 ```ts
 import { all } from 'radash'

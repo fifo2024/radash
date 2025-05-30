@@ -1,20 +1,20 @@
 ---
 title: guard
-group: 'Async'
-description: Have a function return undefined if it errors out
+group: "Async"
+description: 让函数在出错时返回 undefined
 ---
 
-## Basic usage
+## 基础用法
 
-This lets you set a default value if an async function errors out.
+该功能允许在异步函数执行失败时，自动回退到指定的默认值。
 
 ```ts
-const users = (await guard(fetchUsers)) ?? []
+const users = (await guard(fetchUsers)) ?? [];
 ```
 
-You can choose to guard only specific errors too
+您也可以配置为仅捕获特定类型的错误，而非所有错误。
 
 ```ts
-const isInvalidUserError = (err: any) => err.code === 'INVALID_ID'
-const user = (await guard(fetchUser, isInvalidUserError)) ?? DEFAULT_USER
+const isInvalidUserError = (err: any) => err.code === "INVALID_ID";
+const user = (await guard(fetchUser, isInvalidUserError)) ?? DEFAULT_USER;
 ```

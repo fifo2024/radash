@@ -1,29 +1,19 @@
 ---
 title: map
-group: 'Async'
-description: Map an array with an async function
+group: "Async"
+description: 使用异步函数映射数组
 ---
 
+## 基础用法
 
-
-
-## Basic usage
-
-A map that handles callback functions that return a promise.
+该映射工具能自动处理返回 Promise 的回调函数，并保持原始集合的顺序结构
 
 ```ts
-import { map } from 'radash'
+import { map } from "radash";
 
-const userIds = [1, 2, 3, 4]
+const userIds = [1, 2, 3, 4];
 
 const users = await map(userIds, async (userId) => {
-  return await api.users.find(userId)
-})
+    return await api.users.find(userId);
+});
 ```
-
-
-
-
-
-
-
